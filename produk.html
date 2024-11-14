@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Produk Roti</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Fade-in animasi saat scroll tanpa delay */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Efek hover timbul dengan perubahan skala dan warna */
+        .hover-scale:hover {
+            transform: scale(1.07); /* Membuat elemen tampak timbul */
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Kartu produk animasi zoom dan shadow saat hover */
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Animasi load-in awal */
+        body {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        body.loaded {
+            opacity: 1;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Hero Section */
+        .hero-bg {
+            background: url('12.png') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Animasi untuk hero title */
+        .hero-title {
+            font-size: 3rem;
+            font-weight: bold;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Modal Produk Baru */
+        #produk-baru-modal {
+            background-color: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        #produk-baru-modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 1200px;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-modal-card {
+            background: #fff;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-modal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-modal-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .close-modal-btn {
+            background: #e74c3c;
+            padding: 0.5rem 2rem;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .close-modal-btn:hover {
+            background: #c0392b;
+        }
+
+    </style>
+</head>
+<body class="font-sans bg-gradient-to-br from-gray-100 to-gray-200 text-gray-800">
+
+    <!-- Hero Section -->
+    <section class="hero-bg">
+        <div class="hero-content">
+            <h1 class="hero-title">Selamat Datang di Roti Lezat</h1>
+            <p class="text-lg mt-2">Nikmati Beragam Roti dengan Cita Rasa Tak Tertandingi!</p>  
+        </div>
+    </section>
+
+    <!-- Navbar -->
+    <nav class="bg-gradient-to-r from-blue-500 to-green-500 text-white p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-3xl font-bold hover:text-yellow-300 transition duration-300">Roti Lezat</h1>
+            <div>
+                <a href="index.html" class="mx-4 hover:text-yellow-300 transition duration-300">Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Produk Section -->
+    <section id="produk" class="py-16 px-6 bg-white">
+        <h2 class="text-4xl font-bold text-center text-blue-600 mb-12 fade-in">Produk Kami</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Produk 1 -->
+            <div class="bg-white p-6 rounded-lg shadow-lg product-card fade-in">
+                <img src="3.jpg" alt="Roti Tawar" class="w-full h-64 object-cover mb-4 rounded-lg hover-scale transition-transform duration-300">
+                <h3 class="text-xl font-semibold mb-2">Roti Tawar</h3>
+                <p class="text-lg text-gray-700 mb-4">Roti tawar yang lembut, cocok untuk sarapan dan makanan ringan.</p>
+                <p class="text-lg font-bold text-gray-900">Rp 15.000</p>
+            </div>
+
+            <!-- Produk 2 -->
+            <div class="bg-white p-6 rounded-lg shadow-lg product-card fade-in">
+                <img src="4.jpg" alt="Roti Coklat" class="w-full h-64 object-cover mb-4 rounded-lg hover-scale transition-transform duration-300">
+                <h3 class="text-xl font-semibold mb-2">Roti Coklat</h3>
+                <p class="text-lg text-gray-700 mb-4">Nikmati rasa manis roti coklat yang lembut dengan taburan coklat.</p>
+                <p class="text-lg font-bold text-gray-900">Rp 18.000</p>
+            </div>
+
+            <!-- Produk 3 -->
+            <div class="bg-white p-6 rounded-lg shadow-lg product-card fade-in">
+                <img src="5.jpg" alt="Roti Keju" class="w-full h-64 object-cover mb-4 rounded-lg hover-scale transition-transform duration-300">
+                <h3 class="text-xl font-semibold mb-2">Roti Keju</h3>
+                <p class="text-lg text-gray-700 mb-4">Roti keju dengan lapisan keju yang melimpah, cocok untuk pecinta keju.</p>
+                <p class="text-lg font-bold text-gray-900">Rp 20.000</p>
+            </div>
+
+            <!-- Produk 4 -->
+            <div class="bg-white p-6 rounded-lg shadow-lg product-card fade-in">
+                <img src="6.jpg" alt="Roti Pisang" class="w-full h-64 object-cover mb-4 rounded-lg hover-scale transition-transform duration-300">
+                <h3 class="text-xl font-semibold mb-2">Roti Pisang</h3>
+                <p class="text-lg text-gray-700 mb-4">Roti dengan potongan pisang segar, memberikan rasa manis alami.</p>
+                <p class="text-lg font-bold text-gray-900">Rp 17.000</p>
+            </div>
+
+            <!-- Produk 5 -->
+            <div class="bg-white p-6 rounded-lg shadow-lg product-card fade-in">
+                <img src="7.jpg" alt="Roti Sosis" class="w-full h-64 object-cover mb-4 rounded-lg hover-scale transition-transform duration-300">
+                <h3 class="text-xl font-semibold mb-2">Roti Sosis</h3>
+                <p class="text-lg text-gray-700 mb-4">Roti dengan sosis pilihan, enak dinikmati saat hangat.</p>
+                <p class="text-lg font-bold text-gray-900">Rp 22.000</p>
+            </div>
+
+            <!-- Produk 6 -->
+            <div class="bg-white p-6 rounded-lg shadow-lg product-card fade-in">
+                <img src="8.jpg" alt="Roti Abon" class="w-full h-64 object-cover mb-4 rounded-lg hover-scale transition-transform duration-300">
+                <h3 class="text-xl font-semibold mb-2">Roti Abon</h3>
+                <p class="text-lg text-gray-700 mb-4">Roti empuk dengan topping abon gurih, favorit banyak orang.</p>
+                <p class="text-lg font-bold text-gray-900">Rp 23.000</p>
+            </div>
+
+            <!-- Produk 7 -->
+            <div class="bg-white p-6 rounded-lg shadow-lg product-card fade-in">
+                <img src="9.jpg" alt="Roti Pandan" class="w-full h-64 object-cover mb-4 rounded-lg hover-scale transition-transform duration-300">
+                <h3 class="text-xl font-semibold mb-2">Roti Pandan</h3>
+                <p class="text-lg text-gray-700 mb-4">Roti dengan aroma pandan yang khas dan lembut.</p>
+                <p class="text-lg font-bold text-gray-900">Rp 16.000</p>
+            </div>
+
+            <!-- Produk 8 -->
+            <div class="bg-white p-6 rounded-lg shadow-lg product-card fade-in">
+                <img src="10.jpg" alt="Roti Kacang" class="w-full h-64 object-cover mb-4 rounded-lg hover-scale transition-transform duration-300">
+                <h3 class="text-xl font-semibold mb-2">Roti Kacang</h3>
+                <p class="text-lg text-gray-700 mb-4">Roti kacang dengan isian kacang panggang, cocok untuk cemilan.</p>
+                <p class="text-lg font-bold text-gray-900">Rp 19.000</p>
+            </div>
+        <!-- Tombol Lihat Produk Baru -->
+        <div class="text-center mt-12">
+            <button id="show-new-product-modal" class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-500 transition">Lihat Produk Baru</button>
+        </div>
+    </section>
+
+    <!-- Modal Produk Baru -->
+    <div id="produk-baru-modal">
+        <div class="modal-content">
+            <h2 class="modal-title">Produk Baru Akan Launching!</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Product 1 -->
+                <div class="product-modal-card fade-in">
+                    <img src="product1.jpg" alt="Choco Delight" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-semibold mb-4">Produk Baru: Choco Delight</h3>
+                    <p class="text-gray-700">A delightful chocolate-flavored bread, perfect for chocolate lovers.</p>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-modal-card fade-in">
+                    <img src="product2.jpg" alt="Berry Blast" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-semibold mb-4">Produk Baru: Berry Blast</h3>
+                    <p class="text-gray-700">A fruity bread infused with fresh berries for a refreshing taste.</p>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-modal-card fade-in">
+                    <img src="product3.jpeg" alt="Matcha Green" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-semibold mb-4">Produk Baru: Matcha Green</h3>
+                    <p class="text-gray-700">A unique green tea-flavored bread, combining health and taste.</p>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button id="close-modal" class="close-modal-btn">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Menampilkan modal saat tombol "Lihat Produk Baru" diklik
+        document.getElementById("show-new-product-modal").addEventListener("click", function() {
+            document.getElementById("produk-baru-modal").classList.add("show");
+        });
+
+        // Menutup modal saat tombol "Tutup" diklik
+        document.getElementById("close-modal").addEventListener("click", function() {
+            document.getElementById("produk-baru-modal").classList.remove("show");
+        });
+
+        // Fade-in untuk body
+        window.onload = function() {
+            document.body.classList.add('loaded');
+        };
+
+        // Tambahkan efek fade-in pada produk saat scroll
+        const fadeInElements = document.querySelectorAll('.fade-in');
+        window.addEventListener('scroll', () => {
+            fadeInElements.forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight) {
+                    el.classList.add('show');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

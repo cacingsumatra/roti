@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Layanan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body class="font-sans bg-gradient-to-br from-blue-50 to-blue-200 text-gray-800">
+
+    <!-- Navbar -->
+    <nav class="bg-gradient-to-r from-blue-500 to-green-500 text-white shadow-lg">
+        <div class="container mx-auto flex justify-between items-center py-4 px-6">
+            <h1 class="text-3xl font-extrabold tracking-wide">Roti Lezat</h1>
+            <div>
+                <a href="index.html" class="mx-4 hover:text-gray-300 transition duration-300">Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="text-center py-20 bg-blue-600 text-white" style="background: url('11.jpg') center/cover;">
+        <h2 class="text-5xl font-bold mb-6" data-aos="fade-up">Selamat Datang di Roti Lezat</h2>
+        <p class="text-lg" data-aos="fade-up" data-aos-delay="100">Nikmati berbagai layanan kami untuk memenuhi kebutuhan Anda</p>
+        <a href="#layanan" class="mt-8 inline-block bg-white text-blue-600 font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-105 transition duration-300" data-aos="fade-up" data-aos-delay="200">Jelajahi Layanan Kami</a>
+    </section>
+
+    <!-- Layanan Section -->
+    <section id="layanan" class="py-16 px-6">
+        <h2 class="text-4xl font-extrabold text-center text-blue-700 mb-12" data-aos="fade-up">Layanan Kami</h2>
+        
+        <div class="container mx-auto grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <!-- Jam Buka -->
+            <div class="bg-gradient-to-r from-blue-200 to-white p-8 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300" data-aos="zoom-in" data-aos-delay="100">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-4">Jam Buka</h3>
+                <p class="text-lg text-gray-700">Senin - Jumat: 08:00 - 20:00</p>
+                <p class="text-lg text-gray-700">Sabtu - Minggu: 09:00 - 21:00</p>
+            </div>
+
+            <!-- Alamat Utama -->
+            <div class="bg-gradient-to-r from-blue-200 to-white p-8 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300" data-aos="zoom-in" data-aos-delay="200">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-4">Alamat Utama</h3>
+                <p class="text-lg text-gray-700">Jl. Roti No. 123, Jakarta, Indonesia</p>
+                <p class="text-lg text-gray-700">Telepon: (021) 123-4567</p>
+            </div>
+
+            <!-- Outlet yang Tersedia -->
+            <div class="bg-gradient-to-r from-blue-200 to-white p-8 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300" data-aos="zoom-in" data-aos-delay="300">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-4">Outlet yang Tersedia</h3>
+                <ul class="text-lg text-gray-700 list-inside list-disc">
+                    <li>Outlet Jakarta Pusat - Jl. Merdeka No. 45</li>
+                    <li>Outlet Bekasi - Jl. Patriot No. 23</li>
+                    <li>Outlet Tangerang - Jl. Bintaro Raya No. 5</li>
+                    <li>Outlet Bandung - Jl. Asia Afrika No. 89</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-blue-500 to-green-500 text-white py-8">
+        <div class="container mx-auto text-center space-y-4">
+            <p class="text-lg">&copy; 2024 Roti Lezat.</p>
+        </div>
+    </footer>
+
+    <!-- Inisialisasi AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            offset: 200,
+        });
+    </script>
+
+</body>
+</html>
